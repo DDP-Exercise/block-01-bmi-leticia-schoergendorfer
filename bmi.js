@@ -24,12 +24,19 @@
  *******************************************************/
 
 /*
- * TODO: Declare and assign all necessary constants and variables with user input.
+ * Done: Declare and assign all necessary constants and variables with user input.
  * Make sure, to help your users understand what they need to type in, by using clear prompt-instructions.
  */
 
 const LINE = "-----------------------------------------------------";
 let bmr, bmi, normal, danger;
+
+let lastName = prompt("Type in your last name:");
+let firstName = prompt("Type in your first name:");
+
+let age = prompt("Type in your age in years:");
+let height = prompt("Type in your height in cm:");
+let weight = prompt("Type in your weight in kg:");
 
 /**
  * Formulas:
@@ -45,15 +52,42 @@ let bmr, bmi, normal, danger;
  **/
 
 /*
- * TODO: To calculate the bmr; ask your users which calculation method they would prefer (male or female).
+ * Done: To calculate the bmr; ask your users which calculation method they would prefer (male or female).
  * Be careful. Users make typos. Make sure that you have a valid answer before moving on.
  */
 
-// TODO: To calculate the bmi, use the given formula with all the input you have collected.
-// TODO: Once you have the bmi, determine whether or not the weight is normal and if the condition is dangerous.
+let gender;
+
+do {
+    gender = prompt("Choose the right calculation method for your gender (male/female):");
+} while (gender !== "male" && gender !== "female");
+
+// Done: To calculate the bmi, use the given formula with all the input you have collected.
+
+if (gender === "female") {
+    bmr = 655 + 10 * weight + 2 * height - 6 * age;
+} else {
+    bmr = 66 + 14 * weight + 5 * height - 7 * age;
+}
+
+bmi = (10000 * weight) / (height * height);
+
+// Done: Once you have the bmi, determine whether or not the weight is normal and if the condition is dangerous.
+
+if (bmi >= 18 && bmi <= 25) {
+    normal = "Yes";
+} else {
+    normal = "No";
+}
+
+if (bmi < 16 || bmi >= 30) {
+    danger = "Yes";
+} else {
+    danger = "No";
+}
 
 /*
- * TODO: Create the correct output from all your data. Make sure to stick to the promised format! NO EXCEPTIONS!
+ * Done: Create the correct output from all your data. Make sure to stick to the promised format! NO EXCEPTIONS!
  * You can use \t to add a Tab-Space. Once your program is completed, the output in the browser console should
  * look EXACTLY like the Example-Output above (with different data, of course).
  *
@@ -72,8 +106,18 @@ let bmr, bmi, normal, danger;
  */
 
 console.log(LINE); // Logs the dashed-line.
+console.log("Name:\t\t\t\t\t\t" + lastName + ", " + firstName);
+console.log(LINE);
+console.log("Age:\t\t\t\t\t\t" + age + " Years");
+console.log("Height:\t\t\t\t\t\t" + height/100 + "m");
+console.log("Weight:\t\t\t\t\t\t" + weight + " kg");
+console.log("Basal Metabolic Rate:\t\t" + bmr + " kcal");
+console.log("Body Mass Index:\t\t\t" + bmi);
+console.log("Normal Weight:\t\t\t\t" + normal);
+console.log("Danger:\t\t\t\t\t\t" + danger);
+console.log(LINE);
 
 /*
- * TODO: Make sure to TEST YOUR SOFTWARE! Does it work, when People are smaller than 1 meter? Or taller than 2?
+ * Done: Make sure to TEST YOUR SOFTWARE! Does it work, when People are smaller than 1 meter? Or taller than 2?
  * Tip: An 18-Year old Woman, sized 160cm with 60 kg should have a BMR of 1467 kcal and a BMI of 23.4375.
  */
